@@ -91,8 +91,8 @@ false
         }
       
         section("About") {
-            paragraph "Version 1.3"
-            href url:"https://github.com/cschwer/apps/googleSheetsLogging", style:"embedded", required:false, 
+            paragraph "Version 2.0"
+            href url:"https://github.com/cschwer/apps/tree/master/googleSheetsLogging", style:"embedded", required:false, 
 
 title:"Installation instructions"
         }
