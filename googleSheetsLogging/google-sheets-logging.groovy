@@ -101,7 +101,7 @@ title:"Installation instructions"
 }
 
 private def appName() {
-    return "${parent ? "Google Sheet Logging Automation" : "Google Sheets Logging"}"
+    return "Google Sheets Logging"
 }
 
 def installed() {
@@ -121,17 +121,8 @@ def updated() {
 }
 
 def initialize() {
-    if (parent) { 
-        initChild() 
-    } else {
-        initParent() 
-    }
-    
+    initChild() 
     log.debug "End initialize()"
-}
-
-def initParent() {
-    log.debug "initParent()"
 }
 
 def initChild() {
