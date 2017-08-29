@@ -14,7 +14,7 @@
  */
 
 definition(
-    name: "${appName()}",
+    name: "Google Sheets Logging",
     namespace: "cschwer",
     author: "Charles Schwer",
     description: "Log to Google Sheets",
@@ -31,16 +31,12 @@ def startPage() {
     return dynamicPage(name: "childStartPage", title: "", install: true, uninstall: true) { 
       section("Contact Sensors to Log") {
             input "contacts", "capability.contactSensor", title: "Doors open/close", required: false, multiple: true
-            input "contactLogType", "enum", title: "Values to log", options: ["open/closed", "true/false", "1/0"], defaultValue: 
-
-"open/closed", required: true, multiple: false
+            input "contactLogType", "enum", title: "Values to log", options: ["open/closed", "true/false", "1/0"], defaultValue: "open/closed", required: true, multiple: false
         }
     
         section("Motion Sensors to Log") {
             input "motions", "capability.motionSensor", title: "Motion Sensors", required: false, multiple: true
-            input "motionLogType", "enum", title: "Values to log", options: ["active/inactive", "true/false", "1/0"], defaultValue: 
-
-"active/inactive", required: true, multiple: false
+            input "motionLogType", "enum", title: "Values to log", options: ["active/inactive", "true/false", "1/0"], defaultValue: "active/inactive", required: true, multiple: false
         }
     
         section("Thermostat Settings") {
@@ -51,9 +47,7 @@ def startPage() {
     
         section("Locks to Log") {
             input "locks", "capability.lock", title: "Locks", multiple: true, required: false
-            input "lockLogType", "enum", title: "Values to log", options: ["locked/unlocked", "true/false", "1/0"], defaultValue: 
-
-"locked/unlocked", required: true, multiple: false
+            input "lockLogType", "enum", title: "Values to log", options: ["locked/unlocked", "true/false", "1/0"], defaultValue: "locked/unlocked", required: true, multiple: false
         }
     
         section("Log Other Devices") {
@@ -72,18 +66,12 @@ def startPage() {
 
         section ("Google Sheets") {
             input "urlKey", "text", title: "Script URL key", required: true
-            input "appsDomain", "text", title: "Apps domainname", description: "Only set this if not using google.com", required: 
-
-false
+            input "appsDomain", "text", title: "Apps domainname", description: "Only set this if not using google.com", required: false
         }
     
         section ("Technical settings") {
-            input "queueTime", "enum", title:"Time to queue events before pushing to Google (in minutes)", options: ["0", "1", "2", "3", "5", 
-
-"10", "15"], defaultValue:"5"
-            input "resetVals", "enum", title:"Reset the state values (queue, schedule, etc)", options: ["yes", "no"], defaultValue: 
-
-"no"
+            input "queueTime", "enum", title:"Time to queue events before pushing to Google (in minutes)", options: ["0", "1", "2", "3", "5", "10", "15"], defaultValue:"5"
+            input "resetVals", "enum", title:"Reset the state values (queue, schedule, etc)", options: ["yes", "no"], defaultValue: "no"
         }
         
         section([mobileOnly:true], "Options") {
@@ -92,16 +80,10 @@ false
       
         section("About") {
             paragraph "Version 2.0"
-            href url:"https://github.com/cschwer/apps/tree/master/googleSheetsLogging", style:"embedded", required:false, 
-
-title:"Installation instructions"
+            href url:"https://github.com/cschwer/apps/tree/master/googleSheetsLogging", style:"embedded", required:false, title:"Installation instructions"
         }
 
     }
-}
-
-private def appName() {
-    return "Google Sheets Logging"
 }
 
 def installed() {
@@ -121,12 +103,7 @@ def updated() {
 }
 
 def initialize() {
-    initChild() 
-    log.debug "End initialize()"
-}
-
-def initChild() {
-    log.debug "initChild()"
+    log.debug "initialize()"
     
     unsubscribe()
     
