@@ -28,7 +28,7 @@ preferences {
 }
 
 def startPage() {
-    return dynamicPage(name: "childStartPage", title: "", install: true, uninstall: true) { 
+    return dynamicPage(name: "startPage", title: "", install: true, uninstall: true) { 
       section("Contact Sensors to Log") {
             input "contacts", "capability.contactSensor", title: "Doors open/close", required: false, multiple: true
             input "contactLogType", "enum", title: "Values to log", options: ["open/closed", "true/false", "1/0"], defaultValue: "open/closed", required: true, multiple: false
