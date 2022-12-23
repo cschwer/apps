@@ -247,10 +247,6 @@ private queueValue(evt, Closure convert) {
             def eventTime = URLEncoder.encode(evt.date.format( 'M/d/yyyy HH:mm:ss', location.timeZone ))
             addToQueue("Time", eventTime)
         }
- 	else {    // new code
-        	def eventLastTime = URLEncoder.encode(evt.date.format( 'MM/dd/yy HH:mm:ss', location.timeZone ))   // new code
-            addToQueue("LastTime", eventLastTime)   // new code
-		}   // new code
         addToQueue(keyId, value)
         
         log.debug(atomicState.queue)
